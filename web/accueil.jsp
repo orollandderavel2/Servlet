@@ -22,6 +22,7 @@
         </form>
        
 <span style="color:red"/>
+<%--
         <%
             Integer i=(Integer) request.getAttribute("cleErr");
             if (i != null)
@@ -34,6 +35,11 @@
             }
             }
             %>
+            --%>
             
+            
+                
+            </c:if>
+                
     </body>
 </html>

@@ -25,8 +25,6 @@ import javax.servlet.http.HttpSession;
  */
 public class Controleur extends HttpServlet {
 
-    
-
     Connection conn;
     Statement stmt;
     ResultSet rs;
@@ -66,7 +64,7 @@ public class Controleur extends HttpServlet {
         return conn;
 
     }
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -78,7 +76,7 @@ public class Controleur extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
 // Connexion à la base
         try {
             conn = this.initConnexionTP();
@@ -144,12 +142,13 @@ HttpSession session = request.getSession();
         String btn = request.getParameter("bouton");
 
         if (btn != null) {
+
             if (btn.equals("Supprimer")) {
                 String reqSup = "DELETE from EMPLOYES WHERE ID = ?";
                 String ID = request.getParameter("idClient");
                 try {
                     //conn = DriverManager.getConnection(URLs, USERDBs, MDPDBs);
-                    conn = this.initConnexionTP();
+                    conn = this.initConnexionSolutec();
                     PreparedStatement pstmt;
                     pstmt = conn.prepareStatement(reqSup);
                     pstmt.setString(1, ID);
@@ -159,9 +158,10 @@ HttpSession session = request.getSession();
                 }
                 //conn = DriverManager.getConnection(URLs, USERDBs, MDPDBs);
                 try {
-                    conn = this.initConnexionSolutec();
+                   // conn = this.initConnexionSolutec();
                     stmt = conn.createStatement();
                     rs = stmt.executeQuery(requete1);
+                                              listeEmployes.clear();
 
                     while (rs.next()) {
                         EmployeBean employe = new EmployeBean();
@@ -208,6 +208,7 @@ HttpSession session = request.getSession();
                     conn = this.initConnexionSolutec();
                     stmt = conn.createStatement();
                     rs = stmt.executeQuery(requete1);
+                                              listeEmployes.clear();
 
                     while (rs.next()) {
                         EmployeBean employe = new EmployeBean();
@@ -248,8 +249,8 @@ HttpSession session = request.getSession();
                     pstmt.setString(9, request.getParameter("telpro"));
 
                     pstmt.setString(10, IDPrenom);
-                    int u = pstmt.executeUpdate();
-                    System.out.println(u);
+                   pstmt.executeUpdate();
+     
 
                 } catch (SQLException e) {
                     System.out.println(e.getMessage());
@@ -260,6 +261,7 @@ HttpSession session = request.getSession();
                     conn = this.initConnexionSolutec();
                     stmt = conn.createStatement();
                     rs = stmt.executeQuery(requete1);
+                    listeEmployes.clear();
 
                     while (rs.next()) {
                         EmployeBean employe = new EmployeBean();
