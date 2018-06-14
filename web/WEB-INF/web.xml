@@ -21,7 +21,7 @@
     </session-config>
     <welcome-file-list>
     <welcome-file>
-        Controleur
+        accueil.jsp
     </welcome-file>
 </welcome-file-list>
 </web-app>
