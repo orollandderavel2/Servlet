@@ -98,6 +98,8 @@ public class Controleur extends HttpServlet {
         String mdpSaisi = request.getParameter("chMdp");
 
         int i = 0;
+        
+        
         if (loginSaisi != null && mdpSaisi != null) {
             if (loginSaisi.equals(user.getLogin()) && mdpSaisi.equals(user.getMdp())) {
                 //conn = DriverManager.getConnection(URLs, USERDBs, MDPDBs);
@@ -105,7 +107,7 @@ public class Controleur extends HttpServlet {
                     conn = this.initConnexionSolutec();
                     stmt = conn.createStatement();
                     rs = stmt.executeQuery(requete1);
-
+listeEmployes.clear();
                     while (rs.next()) {
                         EmployeBean employe = new EmployeBean();
                         employe.setID(rs.getInt("ID"));

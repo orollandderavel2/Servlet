@@ -21,26 +21,30 @@
                     <td><b>Ville</b></td>
                     <td><b>Email</b></td>
                 </tr>
-                <%
-     //               ATTENTION CHANGER tableau dans le while par bienvenue pour revenir vers bienvenue !
+                <%--
+                    ATTENTION CHANGER tableau dans le while par bienvenue pour revenir vers bienvenue !
                     ArrayList<EmployeBean> listeE = (ArrayList<EmployeBean>) session.getAttribute("cleList");
-               for (int i = 0; i < listeE.size(); i++) {%>
+               for (int i = 0; i < listeE.size(); i++) { --%>
+                <c:forEach items="${cleList}" var="user">
+                    
+               
                 <tr> 
 
-                    <td>  <INPUT TYPE="radio" NAME='idClient' VALUE="<% out.print(listeE.get(i).getID()); %>" CHECKED ></td>
-                    <td>  <% out.println(listeE.get(i).getPrenom()); %></td>
-                    <td>  <% out.println(listeE.get(i).getNom()); %>    </td>
-                    <td>  <% out.println(listeE.get(i).getEmail()); %>    </td>
-                    <td>  <% out.println(listeE.get(i).getAdresse()); %>  </td>
-                    <td>  <% out.println(listeE.get(i).getCodePostal()); %>    </td>
-                    <td>  <% out.println(listeE.get(i).getVille()); %>  </td>
-                    <td>  <% out.println(listeE.get(i).getTelPort()); %> </td>
-                    <td>  <% out.println(listeE.get(i).getTelDom()); %>    </td>
-                    <td>  <% out.println(listeE.get(i).getTelPro()); %>    </td>
-                </tr>    
-                <%}%>
+                    <td>  <INPUT TYPE="radio" NAME='idClient' VALUE="${user.ID}" CHECKED ></td>
+                    <td>  <c:out value="${user.prenom}" /> </td>
+                    <td>  <c:out value="${user.nom}" />   </td>
+                    <td>  <c:out value="${user.email}"  />  </td>
+                    <td>  <c:out value="${user.adresse}" /> </td>
+                    <td>  <c:out value="${user.codePostal}"/>    </td>
+                    <td>  <c:out value="${user.ville}"/>  </td>
+                    <td>  <c:out value="${user.telPort}"/> </td>
+                    <td>  <c:out value="${user.telDom}"/>    </td>
+                    <td>  <c:out value="${user.telPro}"/>    </td>
+                </tr>   
+                </c:forEach>
+                <%-- <%}%> --%>
 
-            </table>
+</table>
             <input type='submit' name="bouton" value="Detail"/>
             <input type='submit' name="bouton" value="Supprimer"/>
             
